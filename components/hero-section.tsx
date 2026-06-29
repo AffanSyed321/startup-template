@@ -128,7 +128,7 @@ export default function HeroSection() {
                     as="p"
                     className="text-balance text-base md:text-xl font-instrument-serif leading-relaxed text-gray-700"
                   >
-                    Our platform transforms your audio and video podcasts into scroll-stopping short-form clips. We find the perfect 60 seconds to help you dominate your niche's audience.
+                    Transform your content into engaging short-form clips with AI. We help you find and create the perfect moments that resonate with your audience.
                   </TextEffect>
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function HeroSection() {
                       </button>
                       <div className="flex flex-col flex-1 overflow-hidden">
                         <span className="text-xs font-bold text-zinc-700 leading-tight truncate">Input Audio</span>
-                        <span className="text-[10px] text-zinc-400 truncate">Podcast.m4a</span>
+                        <span className="text-[10px] text-zinc-400 truncate">Audio.m4a</span>
                       </div>
                     </div>
                   </div>

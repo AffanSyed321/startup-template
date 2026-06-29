@@ -71,7 +71,7 @@ export default function AudioVideoDemo() {
                             </div>
                             <div className="text-center px-2">
                                 <h3 className="font-bold text-zinc-700 font-instrument-serif">Input Audio</h3>
-                                <p className="text-xs text-zinc-400 font-instrument-serif">Original Podcast Clip</p>
+                                <p className="text-xs text-zinc-400 font-instrument-serif">Original Audio Clip</p>
                             </div>
 
                             <div className="w-full h-2 bg-zinc-100 rounded-full overflow-hidden mt-2">

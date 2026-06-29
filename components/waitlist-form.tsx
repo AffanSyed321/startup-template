@@ -74,10 +74,10 @@ export default function WaitlistForm() {
 
   if (step === "usecase") {
     const options = [
-      "Audio-only Podcaster",
-      "Video and Audio Podcaster",
-      "Radio Show",
-      "Thought leader venturing into audio podcasting",
+      "Content Creator",
+      "Small Business Owner",
+      "Marketing Team",
+      "Agency or Freelancer",
     ];
     const isOther = useCase !== "" && !options.includes(useCase);
 

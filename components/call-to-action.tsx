@@ -7,7 +7,7 @@ export default function CallToAction() {
             Ready to dominate your <span className="italic font-bold underline">niche</span>?
           </h2>
           <p className="mt-4 font-instrument-serif">
-            Join the creators and podcasts using our platform to win with AI that actually understands performance.
+            Join the creators using our platform to win with AI that actually understands performance.
           </p>
         </div>
       </div>

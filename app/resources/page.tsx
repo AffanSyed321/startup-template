@@ -6,7 +6,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Resources",
   description:
-    "Notes on short-form video, the discovery gap, and building AI that understands an audience instead of averaging it.",
+    "Guides, tutorials, and documentation to help you get the most out of the Startup Template.",
 };
 
 const featured = articles.find((a) => a.isFeatured)!;
@@ -19,25 +19,19 @@ export default function ResourcesPage() {
 
       <div className="rsc-wrap pt-28">
         <div className="masthead">
-          <h1 className="rise d1">Built for<br />the scroll.</h1>
+          <h1 className="rise d1">Resources</h1>
           <p className="rise d3">
-            Your best content already exists. It&rsquo;s sitting in a two-hour episode
-            nobody found. We write about why that happens, how we&rsquo;re fixing it,
-            and what it actually takes to turn a catalog into a discovery engine.
+            Guides, tutorials, and documentation to help you customize
+            and deploy your site.
           </p>
         </div>
 
         <Link className="feature rise d3" href={`/resources/${featured.slug}`}>
           <div className="art">
-            <div className="ribbon">Launch</div>
-            <video
-              src="/commercial.mov"
-              autoPlay
-              muted
-              loop
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover"
-            />
+            <div className="ribbon">Featured</div>
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center">
+              <span className="text-white/20 text-6xl font-instrument-serif">Guide</span>
+            </div>
           </div>
           <div className="body">
             <div className="cat">{featured.category}</div>
@@ -64,7 +58,7 @@ export default function ResourcesPage() {
       <footer className="rsc-footer">
         <div className="foot">
           <span>Startup Template</span>
-          <span>Don&rsquo;t be the missed scroll</span>
+          <span>Resources &amp; Guides</span>
         </div>
       </footer>
     </>

@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { useRef } from "react";
 
 const RevealWord = ({ children, progress, range }: { children: string; progress: MotionValue<number>; range: [number, number] }) => {
-    // Single span approach: opacity goes from 0.15 (ghost) to 1.0 (revealed)
     const opacity = useTransform(progress, range, [0.15, 1]);
     return (
         <span className="relative mx-1 lg:mx-2.5 inline-block">
@@ -23,7 +22,7 @@ export function PinnedContext() {
         offset: ["start start", "end end"],
     });
 
-    const phrase = "Because we know Context does matter.";
+    const phrase = "Built to scale with your vision.";
     const words = phrase.split(" ");
 
     return (
@@ -37,11 +36,11 @@ export function PinnedContext() {
             <section className="h-[80vh] md:h-screen sticky top-0 bg-gradient-to-b from-white to-[#FAF6ED] grid items-center justify-center z-0 pb-16 md:pb-64">
                 <div className="px-4 md:px-8 text-center max-w-6xl mx-auto pt-16 md:pt-0">
                     <h2 className="text-4xl md:text-9xl lg:text-[10rem] font-instrument-serif italic mb-6 md:mb-8 text-zinc-900 tracking-tight leading-none">
-                        The Context Engine
+                        How It Works
                     </h2>
                     <p className="font-instrument-serif text-2xl md:text-5xl lg:text-6xl text-zinc-600 leading-snug text-balance px-2">
-                        We built our Proprietary Context Engine to help you{" "}
-                        <span className="text-zinc-900 font-medium whitespace-nowrap">Own your niche.</span>
+                        A powerful platform designed to help you{" "}
+                        <span className="text-zinc-900 font-medium whitespace-nowrap">ship faster.</span>
                     </p>
                 </div>
             </section>
@@ -54,7 +53,7 @@ export function PinnedContext() {
                             const start = 0.5 + (i / words.length) * 0.45;
                             const end = start + (1 / words.length) * 0.45;
 
-                            if (word === "Context" || word === "does" || word === "matter.") {
+                            if (word === "scale" || word === "your" || word === "vision.") {
                                 return (
                                     <span key={i} className="relative mx-1 lg:mx-2.5 inline-block">
                                         <motion.span

@@ -101,7 +101,7 @@ export default function HeroSection() {
                     transition={{ duration: 0.3, ease: "easeOut" }}
                     className="text-4xl md:text-6xl xl:text-[4.5rem] font-instrument-serif bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 to-zinc-400 leading-[1.1] whitespace-nowrap"
                   >
-                    Lights, Camera, Action
+                    Build, Ship, Grow
                   </motion.h1>
                   <motion.div
                     initial={{ scaleX: 0, opacity: 0 }}
@@ -117,7 +117,7 @@ export default function HeroSection() {
                   as="h2"
                   className="mt-4 text-balance text-4xl md:text-6xl xl:text-[5rem] font-instrument-serif text-zinc-900 leading-[1.1]"
                 >
-                  Oh no, you don&apos;t need that.
+                  Your next big thing starts here.
                 </TextEffect>
                 <div className="mt-8 max-w-xl">
                   <TextEffect

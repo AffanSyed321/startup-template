@@ -29,32 +29,32 @@ import { cn } from "@/lib/utils";
 // Define the steps directly
 const STEPS = [
     { icon: UploadCloud, label: "Upload", color: "bg-zinc-100 text-zinc-600" },
-    { icon: Mic, label: "Transcribe", color: "bg-blue-50 text-blue-600", expandable: true },
-    { icon: Sparkles, label: "Context", color: "bg-pink-50 text-pink-600 shadow-pink-100 ring-4 ring-pink-50/50", expandable: true },
-    { icon: Scissors, label: "Clips", color: "bg-blue-50 text-blue-600", expandable: true },
+    { icon: Mic, label: "Analyze", color: "bg-blue-50 text-blue-600", expandable: true },
+    { icon: Sparkles, label: "Process", color: "bg-pink-50 text-pink-600 shadow-pink-100 ring-4 ring-pink-50/50", expandable: true },
+    { icon: Scissors, label: "Generate", color: "bg-blue-50 text-blue-600", expandable: true },
     { icon: Palette, label: "Style", color: "bg-zinc-100 text-zinc-600", expandable: true },
     { icon: Share, label: "Export", color: "bg-zinc-100 text-zinc-600" },
 ];
 
 const SIGNAL_CONFIG: Record<string, any[]> = {
-    Transcribe: [
+    Analyze: [
         { icon: Activity, label: "Waveform", x: -200, y: 0, delay: 0.1 },
         { icon: FileText, label: "Text", x: 200, y: 0, delay: 0.2 },
         { icon: Languages, label: "Languages", x: 0, y: -160, delay: 0.3 },
         { icon: Zap, label: "Confidence", x: 0, y: 160, delay: 0.4 },
     ],
-    Context: [
+    Process: [
         { icon: Type, label: "Keywords", x: -260, y: 0, delay: 0.3 },
         { icon: Hash, label: "Topics", x: 260, y: 0, delay: 0.15 },
         { icon: Layout, label: "Structure", x: -200, y: 120, delay: 0.25 },
-        { icon: Sparkles, label: "Hooks", x: 200, y: 120, delay: 0.35 },
+        { icon: Sparkles, label: "Highlights", x: 200, y: 120, delay: 0.35 },
         { icon: FileText, label: "Script", x: -200, y: -160, size: "sm", delay: 0.4 },
         { icon: Mic, label: "Tone", x: 200, y: -160, size: "sm", delay: 0.45 },
-        { icon: Scissors, label: "Cuts", x: 0, y: -220, size: "sm", delay: 0.5 },
+        { icon: Scissors, label: "Segments", x: 0, y: -220, size: "sm", delay: 0.5 },
     ],
-    Clips: [
-        { icon: Zap, label: "Viral Score", x: -200, y: 0, delay: 0.1 },
-        { icon: Smartphone, label: "9:16", x: 200, y: 0, delay: 0.2 },
+    Generate: [
+        { icon: Zap, label: "Quality Score", x: -200, y: 0, delay: 0.1 },
+        { icon: Smartphone, label: "Format", x: 200, y: 0, delay: 0.2 },
         { icon: Clock, label: "Duration", x: 0, y: -160, delay: 0.3 },
         { icon: Crosshair, label: "Focus", x: 0, y: 160, delay: 0.4 },
     ],
@@ -79,13 +79,11 @@ export function ContextExpansion() {
         return () => window.removeEventListener("resize", checkMobile);
     }, []);
 
-    // Calculate height based on if ANY step is active
     const isExpanded = !!activeStep;
 
     const handleStepEnter = (stepLabel: string) => {
         if (!clickCooldownRef.current && STEPS.find(s => s.label === stepLabel)?.expandable) {
             setActiveStep(stepLabel);
-            // Auto scroll to center on hover
             setTimeout(() => {
                 if (containerRef.current) {
                     containerRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -107,7 +105,6 @@ export function ContextExpansion() {
 
     return (
         <div className="relative w-full flex items-center justify-center">
-            {/* Visual Card Container */}
             <div
                 ref={containerRef}
                 className={cn(
@@ -118,11 +115,9 @@ export function ContextExpansion() {
                 <LayoutGroup>
                     <div className="absolute inset-0 flex items-center justify-center">
 
-                        {/* 1. DETAIL VIEW (Absolute Centered) */}
                         <AnimatePresence mode="popLayout">
                             {isExpanded && activeStep && (
                                 <>
-                                    {/* THE HERO ICON (Must be outside the opacity fading wrapper to morph correctly) */}
                                     <motion.div
                                         key="hero-icon-wrapper"
                                         className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
@@ -133,28 +128,24 @@ export function ContextExpansion() {
                                                 "flex items-center justify-center size-12 md:size-16 rounded-2xl shadow-sm border border-zinc-100 cursor-pointer overflow-hidden pointer-events-auto",
                                                 STEPS.find(s => s.label === activeStep)?.color
                                             )}
-                                            // Animate borderRadius appropriately so it doesn't look like a square when huge
                                             style={{ width: 64, height: 64, borderRadius: 24 }}
                                             animate={{
-                                                width: isMobile ? 180 : 224, // Smaller on mobile
+                                                width: isMobile ? 180 : 224,
                                                 height: isMobile ? 180 : 224,
                                                 borderRadius: isMobile ? 40 : 56
                                             }}
                                             onClick={(e) => handleStepClick(e, activeStep)}
-                                            // Add drag handlers for mobile swipe
                                             drag="x"
                                             dragConstraints={{ left: 0, right: 0 }}
                                             dragElastic={0.2}
                                             onDragEnd={(e, { offset, velocity }) => {
-                                                const swipe = offset.x; // positive = right, negative = left
+                                                const swipe = offset.x;
                                                 const expandableSteps = STEPS.filter(s => s.expandable);
                                                 const currentIndex = expandableSteps.findIndex(s => s.label === activeStep);
 
                                                 if (swipe < -50 && currentIndex < expandableSteps.length - 1) {
-                                                    // Swipe Left -> Next
                                                     setActiveStep(expandableSteps[currentIndex + 1].label);
                                                 } else if (swipe > 50 && currentIndex > 0) {
-                                                    // Swipe Right -> Prev
                                                     setActiveStep(expandableSteps[currentIndex - 1].label);
                                                 }
                                             }}
@@ -173,13 +164,12 @@ export function ContextExpansion() {
                                             >
                                                 {(() => {
                                                     const StepIcon = STEPS.find(s => s.label === activeStep)?.icon || Sparkles;
-                                                    return <StepIcon className="size-8 md:size-12" />; // Scaled up icon
+                                                    return <StepIcon className="size-8 md:size-12" />;
                                                 })()}
                                             </motion.div>
                                         </motion.div>
                                     </motion.div>
 
-                                    {/* Mobile Hint */}
                                     <motion.div
                                         initial={{ opacity: 0, y: 10 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -189,12 +179,10 @@ export function ContextExpansion() {
                                         Slide to see the rest
                                     </motion.div>
 
-                                    {/* CONTROLS & SIGNALS (Fade in/out separately) */}
                                     <motion.div
                                         key="detail-controls"
                                         className="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"
                                     >
-                                        {/* Back to Timeline Button */}
                                         <motion.div
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
@@ -212,7 +200,6 @@ export function ContextExpansion() {
                                             <span className="text-sm font-bold text-zinc-600 font-instrument-serif group-hover:text-zinc-900 transition-colors">Back to Timeline</span>
                                         </motion.div>
 
-                                        {/* Navigation Arrows */}
                                         {(() => {
                                             const expandableSteps = STEPS.filter(s => s.expandable);
                                             const currentIndex = expandableSteps.findIndex(s => s.label === activeStep);
@@ -221,7 +208,6 @@ export function ContextExpansion() {
 
                                             return (
                                                 <>
-                                                    {/* Previous Arrow */}
                                                     {prevStep && (
                                                         <motion.div
                                                             initial={{ opacity: 0, x: 20 }}
@@ -238,7 +224,6 @@ export function ContextExpansion() {
                                                         </motion.div>
                                                     )}
 
-                                                    {/* Next Arrow */}
                                                     {nextStep && (
                                                         <motion.div
                                                             initial={{ opacity: 0, x: -20 }}
@@ -258,7 +243,6 @@ export function ContextExpansion() {
                                             );
                                         })()}
 
-                                        {/* Signals */}
                                         {SIGNAL_CONFIG[activeStep] && (
                                             <div className="absolute inset-0 pointer-events-none">
                                                 {SIGNAL_CONFIG[activeStep].map((signal, idx) => (
@@ -268,7 +252,7 @@ export function ContextExpansion() {
                                                         animate={{
                                                             opacity: 1,
                                                             scale: 1,
-                                                            x: signal.x * (isMobile ? 0.45 : 1), // Tighter spread on mobile
+                                                            x: signal.x * (isMobile ? 0.45 : 1),
                                                             y: signal.y * (isMobile ? 0.45 : 1)
                                                         }}
                                                         exit={{ opacity: 0, scale: 0.5 }}
@@ -296,13 +280,9 @@ export function ContextExpansion() {
                             )}
                         </AnimatePresence>
 
-                        {/* 2. LIST VIEW (Flex Row) */}
                         <motion.div
                             className="relative flex items-center justify-between md:justify-start w-full md:w-auto px-2 md:px-0 pt-8 md:pt-0 pb-12 md:pb-0 gap-2 md:gap-8 z-20"
                             animate={{
-                                // We don't hide the WHOLE list anymore, just the non-active ones fade out maybe?
-                                // Or simpler: The list STAYS, but the active item 'leaves' it via layoutId.
-                                // But for clarity, let's keep the fade out behavior for the *rest* of the list.
                                 opacity: isExpanded ? 0 : 1,
                                 pointerEvents: isExpanded ? "none" : "auto",
                             }}
@@ -310,34 +290,29 @@ export function ContextExpansion() {
                         >
                             {STEPS.map((step, idx) => (
                                 <React.Fragment key={idx}>
-                                    {/* Connector */}
                                     {idx > 0 && (
                                         <div className="block h-px w-2 md:w-8 bg-zinc-400/50 flex-shrink-0" />
                                     )}
 
-                                    {/* Step Node */}
                                     <div className="relative flex flex-col items-center gap-2 -mt-1 md:-mt-2">
                                         <motion.div
                                             layoutId={`step-icon-${step.label}`}
                                             className={cn(
                                                 "relative z-20 cursor-pointer flex items-center justify-center size-9 md:size-12 rounded-xl md:rounded-2xl shadow-sm transition-shadow duration-300 bg-white border border-zinc-100",
                                                 !step.expandable && "cursor-default",
-                                                "snap-center flex-shrink-0", // Ensure valid target for click/snap
+                                                "snap-center flex-shrink-0",
                                                 step.color
                                             )}
                                             whileHover={!isExpanded && step.expandable ? { scale: 1.2 } : {}}
-                                            animate={{ borderRadius: 16 }} // Explicitly force border radius back to 16px (rounded-2xl) to prevent sticking at 56px
+                                            animate={{ borderRadius: 16 }}
                                             onClick={(e) => step.expandable && handleStepClick(e, step.label)}
                                             onMouseEnter={() => handleStepEnter(step.label)}
-                                        // When expanded, the specific active node needs to be hidden HERE so it's only shown in the Detail View
-                                        // style={{ opacity: activeStep === step.label ? 0 : 1 }}
                                         >
                                             <motion.div layoutId={`step-icon-inner-${step.label}`} className="flex items-center justify-center">
                                                 <step.icon className="size-6 md:size-8" />
                                             </motion.div>
                                         </motion.div>
 
-                                        {/* Labels */}
                                         <motion.span
                                             initial={{ opacity: 1 }}
                                             animate={{ opacity: isExpanded ? 0 : 1 }}

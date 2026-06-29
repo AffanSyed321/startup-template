@@ -5,7 +5,6 @@ import {
   Captions,
   TrendingUp,
   FlaskConical,
-  User,
   Zap,
   Scissors,
   FileCode,
@@ -20,50 +19,50 @@ import { PinnedContext } from "./pinned-context";
 export default function FeaturesSection() {
   return (
     <section className="py-0 md:py-0" id="features">
-      {/* Context Engine Section - full width for seamless bg */}
+      {/* How It Works Section - full width for seamless bg */}
       <PinnedContext />
 
       <div className="mx-auto max-w-full px-2 md:px-6 bg-[#FAF6ED] pb-24">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row mt-0 relative">
           <div className="w-full">
 
-            {/* Context Engine Features */}
+            {/* Core Features */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 -mt-48 md:-mt-[40vh] relative z-20 animate-in fade-in duration-500 slide-in-from-bottom-8">
               {[
                 {
                   icon: Brain,
-                  text: "Niche Intelligence",
-                  description: <><strong>Proprietary data</strong> across every niche. Upload your audio or video and we auto-detect your niche — then create a clip to dominate it.</>,
+                  text: "AI-Powered Insights",
+                  description: <><strong>Smart analytics</strong> that learn from your data. Connect your sources and get actionable insights tailored to your business.</>,
                   color: "text-purple-500",
                 },
                 {
                   icon: Zap,
-                  text: "Hook Detection",
-                  description: "Finds the twist. Identifies the most compelling moments that make viewers stop scrolling.",
+                  text: "Lightning Fast",
+                  description: "Built for speed. Our infrastructure ensures sub-second response times, no matter the scale.",
                   color: "text-yellow-500",
                 },
                 {
-                  icon: User,
-                  text: "Audio-to-Avatar",
-                  description: "Transform audio-only content into photorealistic video with consistent character generation.",
+                  icon: Image,
+                  text: "Beautiful Output",
+                  description: "Studio-quality results with pixel-perfect precision. Consistency across every export.",
                   color: "text-green-500",
                 },
                 {
                   icon: TrendingUp,
-                  text: "Viral Structure",
-                  description: "Every clip is self-contained. Complete value in under 90 seconds — no half-ideas.",
+                  text: "Growth Engine",
+                  description: "Track what matters. Built-in analytics and optimization to help you grow faster.",
                   color: "text-emerald-500",
                 },
                 {
-                  icon: Image,
-                  text: "Visual Consistency",
-                  description: "Studio-quality output with no flickering or artifacts. Maintains consistency across 60+ seconds.",
+                  icon: Focus,
+                  text: "Multi-Platform",
+                  description: "Deploy everywhere. One input, optimized output for every platform and format.",
                   color: "text-orange-500",
                 },
                 {
-                  icon: Focus,
-                  text: "Omnichannel Distribution",
-                  description: "Optimized for TikTok, Reels, Shorts, and in-app highlights. One input, every platform.",
+                  icon: Captions,
+                  text: "Smart Automation",
+                  description: "Automate the repetitive work. Set rules, triggers, and workflows that run on autopilot.",
                   color: "text-pink-500",
                 },
               ].map((item, index) => (
@@ -87,7 +86,7 @@ export default function FeaturesSection() {
               ))}
             </div>
 
-            {/* Post Processing Section */}
+            {/* Additional Features Section */}
             <div className="flex flex-col justify-center gap-2 items-center mt-20">
               <TextEffect
                 preset="fade-in-blur"
@@ -95,7 +94,7 @@ export default function FeaturesSection() {
                 as="h2"
                 className="text-4xl font-instrument-serif lg:text-5xl [&>span:nth-last-child(-n+2)]:italic"
               >
-                Post Processing
+                Additional Features
               </TextEffect>
               <TextEffect
                 per="line"
@@ -105,35 +104,35 @@ export default function FeaturesSection() {
                 as="p"
                 className="text-center font-instrument-serif max-w-3xl"
               >
-                Once we find the gold, we polish it. Every clip gets the finishing touches that make it ready to publish.
+                Everything you need to go from idea to production, with the tools to iterate fast.
               </TextEffect>
             </div>
 
-            {/* Post Processing Features */}
+            {/* Additional Features Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8 animate-in fade-in duration-1000 slide-in-from-bottom-8">
               {[
                 {
                   icon: Scissors,
-                  text: "Silence Removal",
-                  description: "Cuts dead air, filler words, and awkward pauses automatically.",
+                  text: "Smart Editing",
+                  description: "Intelligent editing tools that adapt to your workflow and preferences.",
                   color: "text-rose-500",
                 },
                 {
                   icon: Captions,
                   text: "Auto-Captioning",
-                  description: "Styled captions that drive SEO and retention, branded to your style.",
+                  description: "Generate captions and metadata automatically, styled to match your brand.",
                   color: "text-cyan-500",
                 },
                 {
                   icon: FileCode,
-                  text: "XML Export",
-                  description: "Export to Premiere, Final Cut, or DaVinci for full control.",
+                  text: "Export Anywhere",
+                  description: "Export to any format. Compatible with your favorite professional tools.",
                   color: "text-amber-500",
                 },
                 {
                   icon: FlaskConical,
-                  text: "A/B Variations",
-                  description: "Multiple hook variations per clip. Test what works before you post.",
+                  text: "A/B Testing",
+                  description: "Create variations and test what works best before you ship.",
                   color: "text-violet-500",
                 },
               ].map((item, index) => (
